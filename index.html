@@ -1,0 +1,3269 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عيادة الطبيب قرناش | طبيب عام</title>
+
+<style>
+:root{
+    --primary:#087f73;
+    --primary2:#0ea5a0;
+    --dark:#12343b;
+    --text:#334155;
+    --muted:#718096;
+    --bg:#f4f8f9;
+    --white:#fff;
+    --border:#e3ecef;
+    --danger:#dc3545;
+    --warning:#f59e0b;
+    --success:#16a34a;
+    --blue:#2563eb;
+    --shadow:0 8px 25px rgba(20,70,80,.08);
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Tahoma,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+}
+
+button,input,select,textarea{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.app{
+    min-height:100vh;
+    display:flex;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    width:255px;
+    background:linear-gradient(180deg,#087f73,#075e58);
+    color:white;
+    position:fixed;
+    right:0;
+    top:0;
+    bottom:0;
+    padding:20px 14px;
+    z-index:1000;
+}
+
+.brand{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    padding:10px;
+    margin-bottom:25px;
+}
+
+.brand-icon{
+    width:48px;
+    height:48px;
+    border-radius:15px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:rgba(255,255,255,.16);
+    font-size:24px;
+}
+
+.brand h1{
+    font-size:16px;
+}
+
+.brand p{
+    font-size:11px;
+    opacity:.75;
+    margin-top:5px;
+}
+
+.nav{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.nav button{
+    border:0;
+    background:transparent;
+    color:#d8fffa;
+    padding:12px 13px;
+    border-radius:11px;
+    text-align:right;
+    display:flex;
+    align-items:center;
+    gap:11px;
+}
+
+.nav button:hover,
+.nav button.active{
+    background:rgba(255,255,255,.15);
+    color:#fff;
+}
+
+.nav-icon{
+    width:25px;
+    text-align:center;
+}
+
+/* MAIN */
+
+.main{
+    width:calc(100% - 255px);
+    margin-right:255px;
+}
+
+.topbar{
+    height:72px;
+    background:#fff;
+    border-bottom:1px solid var(--border);
+    padding:0 25px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    z-index:500;
+}
+
+.top-title h2{
+    color:var(--dark);
+    font-size:19px;
+}
+
+.top-title p{
+    font-size:11px;
+    color:var(--muted);
+    margin-top:4px;
+}
+
+.doctor{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.avatar{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    color:white;
+    background:linear-gradient(135deg,#087f73,#13a8a0);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+}
+
+.doctor-text strong{
+    display:block;
+    font-size:12px;
+    color:var(--dark);
+}
+
+.doctor-text span{
+    font-size:10px;
+    color:var(--muted);
+}
+
+.content{
+    padding:25px;
+}
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+/* WELCOME */
+
+.welcome{
+    color:white;
+    padding:28px;
+    border-radius:22px;
+    background:
+        radial-gradient(circle at 85% 20%,rgba(255,255,255,.18),transparent 30%),
+        linear-gradient(135deg,#087f73,#0b7285);
+    box-shadow:var(--shadow);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.welcome h2{
+    font-size:23px;
+    margin-bottom:8px;
+}
+
+.welcome p{
+    font-size:12px;
+    opacity:.86;
+}
+
+.today{
+    min-width:130px;
+    padding:14px;
+    border-radius:15px;
+    background:rgba(255,255,255,.13);
+    text-align:center;
+}
+
+.today strong{
+    display:block;
+    font-size:18px;
+}
+
+.today span{
+    font-size:10px;
+}
+
+/* STATISTICS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.stat{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:17px;
+    padding:18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    box-shadow:0 4px 16px rgba(0,0,0,.025);
+}
+
+.stat-icon{
+    width:46px;
+    height:46px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+}
+
+.stat:nth-child(1) .stat-icon{
+    background:#e0f2fe;
+}
+.stat:nth-child(2) .stat-icon{
+    background:#ccfbf1;
+}
+.stat:nth-child(3) .stat-icon{
+    background:#fef3c7;
+}
+.stat:nth-child(4) .stat-icon{
+    background:#dcfce7;
+}
+
+.stat h3{
+    color:var(--dark);
+    font-size:23px;
+}
+
+.stat p{
+    color:var(--muted);
+    font-size:10px;
+    margin-top:5px;
+}
+
+/* GRID */
+
+.dashboard-grid{
+    display:grid;
+    grid-template-columns:1.5fr 1fr;
+    gap:18px;
+}
+
+.card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:17px;
+    padding:19px;
+    box-shadow:0 4px 16px rgba(0,0,0,.025);
+}
+
+.card-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.card-header h3{
+    color:var(--dark);
+    font-size:15px;
+}
+
+.card-header span{
+    color:var(--muted);
+    font-size:10px;
+}
+
+/* APPOINTMENTS */
+
+.appointment{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 0;
+    border-bottom:1px solid #edf2f4;
+}
+
+.appointment:last-child{
+    border-bottom:0;
+}
+
+.patient{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.patient-avatar{
+    width:38px;
+    height:38px;
+    border-radius:11px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#dff7f4;
+    color:var(--primary);
+    font-weight:bold;
+}
+
+.patient strong{
+    display:block;
+    font-size:12px;
+    color:var(--dark);
+}
+
+.patient small{
+    display:block;
+    font-size:9px;
+    color:var(--muted);
+    margin-top:3px;
+}
+
+.time{
+    font-size:11px;
+    color:var(--primary);
+    font-weight:bold;
+}
+
+/* BUTTONS */
+
+.btn{
+    border:0;
+    border-radius:10px;
+    padding:10px 15px;
+    background:var(--primary);
+    color:white;
+    font-size:12px;
+}
+
+.btn:hover{
+    background:#06645b;
+}
+
+.btn.blue{
+    background:#e0f2fe;
+    color:#0369a1;
+}
+
+.btn.red{
+    background:#fee2e2;
+    color:#b91c1c;
+}
+
+.btn.green{
+    background:#dcfce7;
+    color:#15803d;
+}
+
+.btn.gray{
+    background:#f1f5f9;
+    color:#475569;
+}
+
+.quick{
+    display:grid;
+    gap:9px;
+}
+
+/* PAGE HEADER */
+
+.page-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.page-header h2{
+    font-size:21px;
+    color:var(--dark);
+}
+
+.page-header p{
+    color:var(--muted);
+    font-size:11px;
+    margin-top:5px;
+}
+
+/* SEARCH */
+
+.search-bar{
+    display:flex;
+    gap:10px;
+    margin-bottom:18px;
+}
+
+.search{
+    flex:1;
+    border:1px solid var(--border);
+    border-radius:10px;
+    background:white;
+    padding:11px 14px;
+    outline:none;
+}
+
+.search:focus{
+    border-color:var(--primary);
+}
+
+/* TABLE */
+
+.table-box{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:17px;
+    overflow:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:750px;
+}
+
+th,td{
+    padding:14px;
+    border-bottom:1px solid #edf2f4;
+    text-align:right;
+    font-size:11px;
+}
+
+th{
+    background:#f8fafb;
+    color:var(--muted);
+}
+
+td{
+    color:var(--text);
+}
+
+.actions{
+    display:flex;
+    gap:5px;
+}
+
+.mini{
+    border:0;
+    padding:6px 9px;
+    border-radius:7px;
+    font-size:10px;
+    background:#e0f2fe;
+    color:#0369a1;
+}
+
+.mini.delete{
+    background:#fee2e2;
+    color:#b91c1c;
+}
+
+/* FORM */
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+.form-group label{
+    color:var(--muted);
+    font-size:10px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+    border:1px solid var(--border);
+    border-radius:9px;
+    padding:10px 12px;
+    outline:none;
+    background:#fff;
+}
+
+.form-group textarea{
+    min-height:90px;
+    resize:vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+    border-color:var(--primary);
+}
+
+.form-actions{
+    display:flex;
+    gap:8px;
+    margin-top:18px;
+}
+
+/* PROFILE */
+
+.profile{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:15px;
+}
+
+.profile-head{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    background:white;
+    padding:20px;
+    border-radius:17px;
+    border:1px solid var(--border);
+}
+
+.big-avatar{
+    width:65px;
+    height:65px;
+    border-radius:18px;
+    background:linear-gradient(135deg,#087f73,#0ea5a0);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    font-weight:bold;
+}
+
+.profile-head h2{
+    color:var(--dark);
+    font-size:18px;
+}
+
+.profile-head p{
+    color:var(--muted);
+    font-size:11px;
+    margin-top:5px;
+}
+
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.info{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:13px;
+    padding:15px;
+}
+
+.info span{
+    color:var(--muted);
+    font-size:9px;
+}
+
+.info strong{
+    display:block;
+    color:var(--dark);
+    margin-top:7px;
+    font-size:12px;
+}
+
+/* MODAL */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(15,23,42,.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:15px;
+    z-index:5000;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    background:white;
+    width:min(680px,100%);
+    max-height:92vh;
+    overflow:auto;
+    border-radius:20px;
+    padding:22px;
+}
+
+.modal-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:18px;
+}
+
+.modal-head h3{
+    color:var(--dark);
+    font-size:17px;
+}
+
+.close{
+    width:33px;
+    height:33px;
+    border:0;
+    border-radius:9px;
+    background:#f1f5f9;
+    color:#64748b;
+}
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+    left:25px;
+    bottom:25px;
+    background:#16343b;
+    color:white;
+    padding:12px 18px;
+    border-radius:11px;
+    font-size:11px;
+    transform:translateY(100px);
+    opacity:0;
+    transition:.3s;
+    z-index:9000;
+}
+
+.toast.show{
+    transform:translateY(0);
+    opacity:1;
+}
+
+/* MOBILE */
+
+.mobile{
+    display:none;
+    border:0;
+    background:transparent;
+    font-size:22px;
+    color:var(--dark);
+}
+
+@media(max-width:1050px){
+
+    .sidebar{
+        transform:translateX(100%);
+        transition:.3s;
+    }
+
+    .sidebar.open{
+        transform:translateX(0);
+    }
+
+    .main{
+        width:100%;
+        margin-right:0;
+    }
+
+    .mobile{
+        display:block;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .dashboard-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:650px){
+
+    .content{
+        padding:14px;
+    }
+
+    .topbar{
+        padding:0 14px;
+    }
+
+    .doctor-text{
+        display:none;
+    }
+
+    .welcome{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .info-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .page-header{
+        align-items:flex-start;
+        gap:10px;
+    }
+}
+
+@media print{
+
+    .sidebar,
+    .topbar,
+    .page-header button,
+    .actions,
+    .btn{
+        display:none!important;
+    }
+
+    .main{
+        width:100%;
+        margin:0;
+    }
+
+    .content{
+        padding:0;
+    }
+
+    body{
+        background:white;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+
+    <div class="brand">
+        <div class="brand-icon">⚕</div>
+
+        <div>
+            <h1>عيادة الطبيب قرناش</h1>
+            <p>طبيب عام</p>
+        </div>
+    </div>
+
+    <nav class="nav">
+
+        <button class="active" onclick="go('dashboard',this)">
+            <span class="nav-icon">⌂</span>
+            الرئيسية
+        </button>
+
+        <button onclick="go('patients',this)">
+            <span class="nav-icon">👥</span>
+            المرضى
+        </button>
+
+        <button onclick="go('appointments',this)">
+            <span class="nav-icon">📅</span>
+            المواعيد
+        </button>
+
+        <button onclick="go('consultation',this)">
+            <span class="nav-icon">🩺</span>
+            الاستشارة
+        </button>
+
+        <button onclick="go('prescriptions',this)">
+            <span class="nav-icon">💊</span>
+            الوصفات
+        </button>
+
+        <button onclick="go('laboratory',this)">
+            <span class="nav-icon">🧪</span>
+            التحاليل والأشعة
+        </button>
+
+        <button onclick="go('billing',this)">
+            <span class="nav-icon">💳</span>
+            الفواتير
+        </button>
+
+        <button onclick="go('reports',this)">
+            <span class="nav-icon">📊</span>
+            التقارير
+        </button>
+
+        <button onclick="go('settings',this)">
+            <span class="nav-icon">⚙️</span>
+            الإعدادات
+        </button>
+
+    </nav>
+</aside>
+
+
+<!-- MAIN -->
+<main class="main">
+
+<header class="topbar">
+
+    <div style="display:flex;align-items:center;gap:13px">
+
+        <button class="mobile" onclick="toggleMenu()">☰</button>
+
+        <div class="top-title">
+            <h2 id="pageTitle">لوحة التحكم</h2>
+            <p>نظام إدارة عيادة الطبيب قرناش</p>
+        </div>
+
+    </div>
+
+    <div class="doctor">
+
+        <div class="doctor-text">
+            <strong>د. قرناش</strong>
+            <span>طبيب عام</span>
+        </div>
+
+        <div class="avatar">د</div>
+
+    </div>
+
+</header>
+
+
+<div class="content">
+
+<!-- DASHBOARD -->
+<section class="page active" id="dashboard">
+
+    <div class="welcome">
+
+        <div>
+            <h2>مرحباً د. قرناش 👋</h2>
+            <p>نتمنى لك يومًا موفقًا. إليك ملخص العيادة.</p>
+        </div>
+
+        <div class="today">
+            <strong id="currentDate">--</strong>
+            <span>تاريخ اليوم</span>
+        </div>
+
+    </div>
+
+
+    <div class="stats">
+
+        <div class="stat">
+            <div>
+                <h3 id="sPatients">0</h3>
+                <p>المرضى</p>
+            </div>
+            <div class="stat-icon">👥</div>
+        </div>
+
+        <div class="stat">
+            <div>
+                <h3 id="sAppointments">0</h3>
+                <p>المواعيد</p>
+            </div>
+            <div class="stat-icon">📅</div>
+        </div>
+
+        <div class="stat">
+            <div>
+                <h3 id="sConsultations">0</h3>
+                <p>الاستشارات</p>
+            </div>
+            <div class="stat-icon">🩺</div>
+        </div>
+
+        <div class="stat">
+            <div>
+                <h3 id="sPrescriptions">0</h3>
+                <p>الوصفات</p>
+            </div>
+            <div class="stat-icon">💊</div>
+        </div>
+
+    </div>
+
+
+    <div class="dashboard-grid">
+
+        <div class="card">
+
+            <div class="card-header">
+                <h3>مواعيد اليوم</h3>
+                <span id="todayAppointmentsText">0 موعد</span>
+            </div>
+
+            <div id="todayAppointments"></div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-header">
+                <h3>اختصارات</h3>
+            </div>
+
+            <div class="quick">
+
+                <button class="btn" onclick="openModal('patientModal')">
+                    ＋ إضافة مريض
+                </button>
+
+                <button class="btn blue" onclick="openModal('appointmentModal')">
+                    📅 حجز موعد
+                </button>
+
+                <button class="btn blue" onclick="goById('consultation')">
+                    🩺 استشارة جديدة
+                </button>
+
+                <button class="btn blue" onclick="openModal('prescriptionModal')">
+                    💊 وصفة جديدة
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PATIENTS -->
+<section class="page" id="patients">
+
+    <div class="page-header">
+
+        <div>
+            <h2>المرضى</h2>
+            <p>إدارة الملفات الطبية للمرضى</p>
+        </div>
+
+        <button class="btn" onclick="openModal('patientModal')">
+            ＋ مريض جديد
+        </button>
+
+    </div>
+
+    <div class="search-bar">
+
+        <input
+            id="patientSearch"
+            class="search"
+            placeholder="ابحث باسم المريض أو الهاتف..."
+            oninput="renderPatients()">
+
+    </div>
+
+    <div class="table-box">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>المريض</th>
+                    <th>العمر</th>
+                    <th>الجنس</th>
+                    <th>الهاتف</th>
+                    <th>آخر زيارة</th>
+                    <th>إجراءات</th>
+                </tr>
+            </thead>
+
+            <tbody id="patientsTable"></tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- APPOINTMENTS -->
+<section class="page" id="appointments">
+
+    <div class="page-header">
+
+        <div>
+            <h2>المواعيد</h2>
+            <p>تنظيم ومتابعة مواعيد المرضى</p>
+        </div>
+
+        <button class="btn" onclick="openModal('appointmentModal')">
+            ＋ موعد جديد
+        </button>
+
+    </div>
+
+    <div class="card">
+
+        <div id="allAppointments"></div>
+
+    </div>
+
+</section>
+
+
+<!-- CONSULTATION -->
+<section class="page" id="consultation">
+
+    <div class="page-header">
+
+        <div>
+            <h2>الاستشارة الطبية</h2>
+            <p>تسجيل تفاصيل الفحص والتشخيص والعلاج</p>
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <div class="form-grid">
+
+            <div class="form-group">
+                <label>المريض</label>
+                <select id="consultPatient"></select>
+            </div>
+
+            <div class="form-group">
+                <label>التاريخ</label>
+                <input type="date" id="consultDate">
+            </div>
+
+            <div class="form-group">
+                <label>درجة الحرارة °C</label>
+                <input id="temperature" type="number" step="0.1">
+            </div>
+
+            <div class="form-group">
+                <label>ضغط الدم</label>
+                <input id="bloodPressure" placeholder="120/80">
+            </div>
+
+            <div class="form-group">
+                <label>النبض / دقيقة</label>
+                <input id="pulse" type="number">
+            </div>
+
+            <div class="form-group">
+                <label>الوزن kg</label>
+                <input id="weight" type="number">
+            </div>
+
+            <div class="form-group">
+                <label>الطول cm</label>
+                <input id="height" type="number">
+            </div>
+
+            <div class="form-group">
+                <label>تشبع الأكسجين %</label>
+                <input id="oxygen" type="number">
+            </div>
+
+            <div class="form-group full">
+                <label>الشكوى الرئيسية</label>
+                <textarea id="complaint"
+                    placeholder="اكتب سبب زيارة المريض..."></textarea>
+            </div>
+
+            <div class="form-group full">
+                <label>الأعراض والفحص السريري</label>
+                <textarea id="examination"
+                    placeholder="تفاصيل الفحص السريري..."></textarea>
+            </div>
+
+            <div class="form-group full">
+                <label>التشخيص</label>
+                <textarea id="diagnosis"
+                    placeholder="التشخيص..."></textarea>
+            </div>
+
+            <div class="form-group full">
+                <label>الخطة العلاجية</label>
+                <textarea id="treatment"
+                    placeholder="العلاج والمتابعة والتعليمات..."></textarea>
+            </div>
+
+        </div>
+
+        <div class="form-actions">
+
+            <button class="btn" onclick="saveConsultation()">
+                حفظ الاستشارة
+            </button>
+
+            <button class="btn gray" onclick="printCurrentConsultation()">
+                🖨 طباعة
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PRESCRIPTIONS -->
+<section class="page" id="prescriptions">
+
+    <div class="page-header">
+
+        <div>
+            <h2>الوصفات الطبية</h2>
+            <p>الوصفات المسجلة في العيادة</p>
+        </div>
+
+        <button class="btn" onclick="openModal('prescriptionModal')">
+            ＋ وصفة جديدة
+        </button>
+
+    </div>
+
+    <div class="table-box">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>المريض</th>
+                    <th>التاريخ</th>
+                    <th>الأدوية والتعليمات</th>
+                    <th>الإجراء</th>
+                </tr>
+            </thead>
+
+            <tbody id="prescriptionsTable"></tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- LABORATORY -->
+<section class="page" id="laboratory">
+
+    <div class="page-header">
+
+        <div>
+            <h2>التحاليل والأشعة</h2>
+            <p>نتائج الفحوصات المرتبطة بالمرضى</p>
+        </div>
+
+        <button class="btn" onclick="openModal('labModal')">
+            ＋ إضافة نتيجة
+        </button>
+
+    </div>
+
+    <div class="card">
+
+        <div id="labsList"></div>
+
+    </div>
+
+</section>
+
+
+<!-- BILLING -->
+<section class="page" id="billing">
+
+    <div class="page-header">
+
+        <div>
+            <h2>الفواتير والمدفوعات</h2>
+            <p>إدارة الخدمات والمدفوعات</p>
+        </div>
+
+        <button class="btn" onclick="openModal('invoiceModal')">
+            ＋ فاتورة جديدة
+        </button>
+
+    </div>
+
+    <div class="stats">
+
+        <div class="stat">
+            <div>
+                <h3 id="totalInvoices">0</h3>
+                <p>الفواتير</p>
+            </div>
+            <div class="stat-icon">🧾</div>
+        </div>
+
+        <div class="stat">
+            <div>
+                <h3 id="totalRevenue">0</h3>
+                <p>الإيرادات</p>
+            </div>
+            <div class="stat-icon">💰</div>
+        </div>
+
+    </div>
+
+    <div class="table-box">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>المريض</th>
+                    <th>الخدمة</th>
+                    <th>المبلغ</th>
+                    <th>الحالة</th>
+                    <th>التاريخ</th>
+                </tr>
+            </thead>
+
+            <tbody id="invoicesTable"></tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- REPORTS -->
+<section class="page" id="reports">
+
+    <div class="page-header">
+
+        <div>
+            <h2>التقارير والإحصائيات</h2>
+            <p>ملخص نشاط العيادة</p>
+        </div>
+
+        <button class="btn gray" onclick="window.print()">
+            🖨 طباعة التقرير
+        </button>
+
+    </div>
+
+    <div class="stats">
+
+        <div class="stat">
+            <div>
+                <h3 id="rPatients">0</h3>
+                <p>إجمالي المرضى</p>
+            </div>
+            <div class="stat-icon">👥</div>
+        </div>
+
+        <div class="stat">
+            <div>
+                <h3 id="rAppointments">0</h3>
+                <p>المواعيد</p>
+            </div>
+            <div class="stat-icon">📅</div>
+        </div>
+
+        <div class="stat">
+            <div>
+                <h3 id="rConsultations">0</h3>
+                <p>الاستشارات</p>
+            </div>
+            <div class="stat-icon">🩺</div>
+        </div>
+
+        <div class="stat">
+            <div>
+                <h3 id="rRevenue">0</h3>
+                <p>الإيرادات</p>
+            </div>
+            <div class="stat-icon">💰</div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SETTINGS -->
+<section class="page" id="settings">
+
+    <div class="page-header">
+
+        <div>
+            <h2>إعدادات العيادة</h2>
+            <p>بيانات الطبيب والعيادة</p>
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <div class="form-grid">
+
+            <div class="form-group">
+                <label>اسم الطبيب</label>
+                <input id="settingDoctor" value="د. قرناش">
+            </div>
+
+            <div class="form-group">
+                <label>التخصص</label>
+                <input id="settingSpecialty" value="طبيب عام">
+            </div>
+
+            <div class="form-group">
+                <label>اسم العيادة</label>
+                <input id="settingClinic" value="عيادة الطبيب قرناش">
+            </div>
+
+            <div class="form-group">
+                <label>الهاتف</label>
+                <input id="settingPhone">
+            </div>
+
+            <div class="form-group full">
+                <label>العنوان</label>
+                <input id="settingAddress">
+            </div>
+
+            <div class="form-group full">
+                <label>معلومات تظهر في الوصفة</label>
+                <textarea id="settingPrescription"></textarea>
+            </div>
+
+        </div>
+
+        <div class="form-actions">
+
+            <button class="btn" onclick="saveSettings()">
+                حفظ الإعدادات
+            </button>
+
+            <button class="btn blue" onclick="exportBackup()">
+                تنزيل نسخة احتياطية
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+</div>
+</main>
+</div>
+
+
+<!-- PATIENT MODAL -->
+
+<div class="modal" id="patientModal">
+
+<div class="modal-box">
+
+    <div class="modal-head">
+
+        <h3>إضافة مريض جديد</h3>
+
+        <button class="close"
+            onclick="closeModal('patientModal')">✕</button>
+
+    </div>
+
+    <div class="form-grid">
+
+        <div class="form-group">
+            <label>الاسم الكامل</label>
+            <input id="pName">
+        </div>
+
+        <div class="form-group">
+            <label>رقم الهاتف</label>
+            <input id="pPhone">
+        </div>
+
+        <div class="form-group">
+            <label>تاريخ الميلاد</label>
+            <input id="pBirth" type="date">
+        </div>
+
+        <div class="form-group">
+            <label>الجنس</label>
+            <select id="pGender">
+                <option>ذكر</option>
+                <option>أنثى</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>فصيلة الدم</label>
+            <select id="pBlood">
+                <option>غير معروف</option>
+                <option>A+</option>
+                <option>A-</option>
+                <option>B+</option>
+                <option>B-</option>
+                <option>AB+</option>
+                <option>AB-</option>
+                <option>O+</option>
+                <option>O-</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>المهنة</label>
+            <input id="pJob">
+        </div>
+
+        <div class="form-group full">
+            <label>الأمراض المزمنة</label>
+            <textarea id="pChronic"
+                placeholder="مثل السكري، ارتفاع الضغط..."></textarea>
+        </div>
+
+        <div class="form-group full">
+            <label>الحساسية</label>
+            <textarea id="pAllergy"
+                placeholder="الأدوية أو المواد التي تسبب الحساسية..."></textarea>
+        </div>
+
+        <div class="form-group full">
+            <label>ملاحظات</label>
+            <textarea id="pNotes"></textarea>
+        </div>
+
+    </div>
+
+    <div class="form-actions">
+
+        <button class="btn" onclick="addPatient()">
+            حفظ المريض
+        </button>
+
+        <button class="btn gray"
+            onclick="closeModal('patientModal')">
+            إلغاء
+        </button>
+
+    </div>
+
+</div>
+</div>
+
+
+<!-- APPOINTMENT MODAL -->
+
+<div class="modal" id="appointmentModal">
+
+<div class="modal-box">
+
+    <div class="modal-head">
+
+        <h3>حجز موعد</h3>
+
+        <button class="close"
+            onclick="closeModal('appointmentModal')">✕</button>
+
+    </div>
+
+    <div class="form-grid">
+
+        <div class="form-group">
+            <label>المريض</label>
+            <select id="aPatient"></select>
+        </div>
+
+        <div class="form-group">
+            <label>التاريخ</label>
+            <input id="aDate" type="date">
+        </div>
+
+        <div class="form-group">
+            <label>الوقت</label>
+            <input id="aTime" type="time">
+        </div>
+
+        <div class="form-group">
+            <label>نوع الموعد</label>
+            <select id="aType">
+                <option>استشارة عامة</option>
+                <option>متابعة</option>
+                <option>فحص</option>
+                <option>تطعيم</option>
+                <option>شهادة طبية</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="form-actions">
+
+        <button class="btn" onclick="addAppointment()">
+            حفظ الموعد
+        </button>
+
+    </div>
+
+</div>
+</div>
+
+
+<!-- PRESCRIPTION MODAL -->
+
+<div class="modal" id="prescriptionModal">
+
+<div class="modal-box">
+
+    <div class="modal-head">
+
+        <h3>إنشاء وصفة طبية</h3>
+
+        <button class="close"
+            onclick="closeModal('prescriptionModal')">✕</button>
+
+    </div>
+
+    <div class="form-grid">
+
+        <div class="form-group">
+            <label>المريض</label>
+            <select id="rxPatient"></select>
+        </div>
+
+        <div class="form-group">
+            <label>التاريخ</label>
+            <input id="rxDate" type="date">
+        </div>
+
+        <div class="form-group full">
+            <label>الأدوية والتعليمات</label>
+            <textarea id="rxMedicines"
+                placeholder="مثال:
+اسم الدواء — الجرعة — عدد المرات — مدة العلاج"></textarea>
+        </div>
+
+        <div class="form-group full">
+            <label>تعليمات إضافية</label>
+            <textarea id="rxNotes"></textarea>
+        </div>
+
+    </div>
+
+    <div class="form-actions">
+
+        <button class="btn" onclick="addPrescription()">
+            حفظ الوصفة
+        </button>
+
+    </div>
+
+</div>
+</div>
+
+
+<!-- LAB MODAL -->
+
+<div class="modal" id="labModal">
+
+<div class="modal-box">
+
+    <div class="modal-head">
+
+        <h3>إضافة تحليل أو أشعة</h3>
+
+        <button class="close"
+            onclick="closeModal('labModal')">✕</button>
+
+    </div>
+
+    <div class="form-grid">
+
+        <div class="form-group">
+            <label>المريض</label>
+            <select id="labPatient"></select>
+        </div>
+
+        <div class="form-group">
+            <label>النوع</label>
+            <select id="labType">
+                <option>تحليل دم</option>
+                <option>تحليل بول</option>
+                <option>تحليل هرمونات</option>
+                <option>أشعة</option>
+                <option>تخطيط قلب</option>
+                <option>أخرى</option>
+            </select>
+        </div>
+
+        <div class="form-group full">
+            <label>النتيجة</label>
+            <textarea id="labResult"></textarea>
+        </div>
+
+    </div>
+
+    <div class="form-actions">
+
+        <button class="btn" onclick="addLab()">
+            حفظ النتيجة
+        </button>
+
+    </div>
+
+</div>
+</div>
+
+
+<!-- INVOICE MODAL -->
+
+<div class="modal" id="invoiceModal">
+
+<div class="modal-box">
+
+    <div class="modal-head">
+
+        <h3>فاتورة جديدة</h3>
+
+        <button class="close"
+            onclick="closeModal('invoiceModal')">✕</button>
+
+    </div>
+
+    <div class="form-grid">
+
+        <div class="form-group">
+            <label>المريض</label>
+            <select id="invoicePatient"></select>
+        </div>
+
+        <div class="form-group">
+            <label>الخدمة</label>
+            <select id="invoiceService">
+                <option>استشارة عامة</option>
+                <option>متابعة</option>
+                <option>فحص طبي</option>
+                <option>شهادة طبية</option>
+                <option>خدمة أخرى</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>المبلغ</label>
+            <input id="invoiceAmount" type="number">
+        </div>
+
+        <div class="form-group">
+            <label>حالة الدفع</label>
+            <select id="invoiceStatus">
+                <option>مدفوع</option>
+                <option>غير مدفوع</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="form-actions">
+
+        <button class="btn" onclick="addInvoice()">
+            حفظ الفاتورة
+        </button>
+
+    </div>
+
+</div>
+</div>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+/* =====================================================
+   DATABASE LOCAL
+===================================================== */
+
+const DB_KEY="qarnaash_clinic_v2";
+
+let db=JSON.parse(
+    localStorage.getItem(DB_KEY)
+) || {
+
+    patients:[],
+    appointments:[],
+    consultations:[],
+    prescriptions:[],
+    labs:[],
+    invoices:[],
+
+    settings:{
+        doctor:"د. قرناش",
+        specialty:"طبيب عام",
+        clinic:"عيادة الطبيب قرناش",
+        phone:"",
+        address:"",
+        prescription:""
+    }
+};
+
+
+/* =====================================================
+   SAVE
+===================================================== */
+
+function save(){
+
+    localStorage.setItem(
+        DB_KEY,
+        JSON.stringify(db)
+    );
+
+    renderAll();
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+const titles={
+    dashboard:"لوحة التحكم",
+    patients:"المرضى",
+    appointments:"المواعيد",
+    consultation:"الاستشارة الطبية",
+    prescriptions:"الوصفات الطبية",
+    laboratory:"التحاليل والأشعة",
+    billing:"الفواتير والمدفوعات",
+    reports:"التقارير والإحصائيات",
+    settings:"إعدادات العيادة"
+};
+
+function go(page,button){
+
+    document.querySelectorAll(".page")
+        .forEach(x=>x.classList.remove("active"));
+
+    const target=document.getElementById(page);
+
+    if(target)
+        target.classList.add("active");
+
+    document.getElementById("pageTitle")
+        .textContent=titles[page] || "";
+
+    document.querySelectorAll(".nav button")
+        .forEach(x=>x.classList.remove("active"));
+
+    if(button)
+        button.classList.add("active");
+
+    document.getElementById("sidebar")
+        .classList.remove("open");
+
+    renderAll();
+}
+
+function goById(page){
+
+    const button=[
+        ...document.querySelectorAll(".nav button")
+    ].find(x=>
+        x.getAttribute("onclick")?.includes("'"+page+"'")
+    );
+
+    go(page,button);
+}
+
+function toggleMenu(){
+
+    document.getElementById("sidebar")
+        .classList.toggle("open");
+}
+
+
+/* =====================================================
+   MODALS
+===================================================== */
+
+function openModal(id){
+
+    fillPatientSelects();
+
+    document.getElementById(id)
+        .classList.add("show");
+
+    setDefaultDates();
+}
+
+function closeModal(id){
+
+    document.getElementById(id)
+        .classList.remove("show");
+}
+
+
+/* =====================================================
+   PATIENTS
+===================================================== */
+
+function addPatient(){
+
+    const name=
+        document.getElementById("pName").value.trim();
+
+    if(!name){
+        toast("يرجى إدخال اسم المريض");
+        return;
+    }
+
+    db.patients.push({
+
+        id:Date.now(),
+
+        name,
+
+        phone:
+            document.getElementById("pPhone").value,
+
+        birth:
+            document.getElementById("pBirth").value,
+
+        gender:
+            document.getElementById("pGender").value,
+
+        blood:
+            document.getElementById("pBlood").value,
+
+        job:
+            document.getElementById("pJob").value,
+
+        chronic:
+            document.getElementById("pChronic").value,
+
+        allergy:
+            document.getElementById("pAllergy").value,
+
+        notes:
+            document.getElementById("pNotes").value,
+
+        created:
+            todayISO(),
+
+        lastVisit:"-"
+    });
+
+    clearPatientForm();
+
+    closeModal("patientModal");
+
+    save();
+
+    toast("تمت إضافة المريض بنجاح");
+}
+
+
+function clearPatientForm(){
+
+    [
+        "pName",
+        "pPhone",
+        "pBirth",
+        "pJob",
+        "pChronic",
+        "pAllergy",
+        "pNotes"
+    ].forEach(id=>{
+        document.getElementById(id).value="";
+    });
+}
+
+
+function renderPatients(){
+
+    const tbody=
+        document.getElementById("patientsTable");
+
+    if(!tbody)return;
+
+    const search=
+        (
+            document.getElementById("patientSearch")
+            ?.value || ""
+        ).toLowerCase();
+
+    const list=
+        db.patients.filter(p=>
+            p.name.toLowerCase().includes(search) ||
+            (p.phone||"").includes(search)
+        );
+
+    tbody.innerHTML="";
+
+    if(!list.length){
+
+        tbody.innerHTML=`
+        <tr>
+            <td colspan="6"
+                style="text-align:center;color:#94a3b8">
+                لا توجد بيانات مرضى
+            </td>
+        </tr>`;
+
+        return;
+    }
+
+    list.forEach(p=>{
+
+        tbody.innerHTML+=`
+
+        <tr>
+
+            <td>
+
+                <div class="patient">
+
+                    <div class="patient-avatar">
+                        ${escapeHTML(p.name.charAt(0))}
+                    </div>
+
+                    <div>
+                        <strong>
+                            ${escapeHTML(p.name)}
+                        </strong>
+
+                        <small>
+                            ${escapeHTML(p.blood || "فصيلة غير معروفة")}
+                        </small>
+                    </div>
+
+                </div>
+
+            </td>
+
+            <td>${calculateAge(p.birth)}</td>
+
+            <td>${escapeHTML(p.gender)}</td>
+
+            <td>${escapeHTML(p.phone||"-")}</td>
+
+            <td>${escapeHTML(p.lastVisit||"-")}</td>
+
+            <td>
+
+                <div class="actions">
+
+                    <button class="mini"
+                        onclick="viewPatient(${p.id})">
+                        الملف
+                    </button>
+
+                    <button class="mini delete"
+                        onclick="deletePatient(${p.id})">
+                        حذف
+                    </button>
+
+                </div>
+
+            </td>
+
+        </tr>`;
+    });
+}
+
+
+function viewPatient(id){
+
+    const p=
+        db.patients.find(x=>x.id===id);
+
+    if(!p)return;
+
+    const consultations=
+        db.consultations.filter(
+            x=>x.patientId===id
+        ).length;
+
+    alert(
+
+`ملف المريض
+
+الاسم: ${p.name}
+العمر: ${calculateAge(p.birth)}
+الجنس: ${p.gender}
+الهاتف: ${p.phone||"-"}
+فصيلة الدم: ${p.blood||"-"}
+
+الأمراض المزمنة:
+${p.chronic||"لا توجد بيانات"}
+
+الحساسية:
+${p.allergy||"لا توجد بيانات"}
+
+عدد الاستشارات: ${consultations}
+
+آخر زيارة:
+${p.lastVisit||"-"}`
+    );
+}
+
+
+function deletePatient(id){
+
+    if(!confirm("هل تريد حذف هذا المريض؟"))
+        return;
+
+    db.patients=
+        db.patients.filter(x=>x.id!==id);
+
+    save();
+
+    toast("تم حذف المريض");
+}
+
+
+/* =====================================================
+   APPOINTMENTS
+===================================================== */
+
+function addAppointment(){
+
+    const patientId=
+        Number(
+            document.getElementById("aPatient").value
+        );
+
+    const patient=
+        db.patients.find(x=>x.id===patientId);
+
+    if(!patient){
+
+        toast("اختر المريض");
+
+        return;
+    }
+
+    db.appointments.push({
+
+        id:Date.now(),
+
+        patientId,
+
+        patientName:patient.name,
+
+        date:
+            document.getElementById("aDate").value,
+
+        time:
+            document.getElementById("aTime").value,
+
+        type:
+            document.getElementById("aType").value,
+
+        status:"مؤكد"
+    });
+
+    closeModal("appointmentModal");
+
+    save();
+
+    toast("تم حجز الموعد");
+}
+
+
+function renderAppointments(){
+
+    const box=
+        document.getElementById("allAppointments");
+
+    if(!box)return;
+
+    box.innerHTML="";
+
+    const list=
+        [...db.appointments]
+        .sort((a,b)=>
+            (a.date+a.time)
+            .localeCompare(b.date+b.time)
+        );
+
+    if(!list.length){
+
+        box.innerHTML=
+        `<p style="text-align:center;color:#94a3b8">
+            لا توجد مواعيد
+        </p>`;
+
+        return;
+    }
+
+    list.forEach(a=>{
+
+        box.innerHTML+=`
+
+        <div class="appointment">
+
+            <div class="patient">
+
+                <div class="patient-avatar">
+                    ${escapeHTML(a.patientName.charAt(0))}
+                </div>
+
+                <div>
+
+                    <strong>
+                        ${escapeHTML(a.patientName)}
+                    </strong>
+
+                    <small>
+                        ${escapeHTML(a.type)} — ${a.date}
+                    </small>
+
+                </div>
+
+            </div>
+
+            <div class="time">
+                ${a.time}
+            </div>
+
+            <button class="mini delete"
+                onclick="deleteAppointment(${a.id})">
+                حذف
+            </button>
+
+        </div>`;
+    });
+}
+
+
+function deleteAppointment(id){
+
+    db.appointments=
+        db.appointments.filter(x=>x.id!==id);
+
+    save();
+
+    toast("تم حذف الموعد");
+}
+
+
+function renderTodayAppointments(){
+
+    const box=
+        document.getElementById("todayAppointments");
+
+    if(!box)return;
+
+    const today=todayISO();
+
+    const list=
+        db.appointments.filter(
+            x=>x.date===today
+        );
+
+    document.getElementById(
+        "todayAppointmentsText"
+    ).textContent=
+        `${list.length} موعد`;
+
+    box.innerHTML="";
+
+    if(!list.length){
+
+        box.innerHTML=
+        `<p style="font-size:11px;color:#94a3b8">
+            لا توجد مواعيد اليوم.
+        </p>`;
+
+        return;
+    }
+
+    list.forEach(a=>{
+
+        box.innerHTML+=`
+
+        <div class="appointment">
+
+            <div class="patient">
+
+                <div class="patient-avatar">
+                    ${a.patientName.charAt(0)}
+                </div>
+
+                <div>
+
+                    <strong>
+                        ${escapeHTML(a.patientName)}
+                    </strong>
+
+                    <small>
+                        ${escapeHTML(a.type)}
+                    </small>
+
+                </div>
+
+            </div>
+
+            <div class="time">
+                ${a.time}
+            </div>
+
+        </div>`;
+    });
+}
+
+
+/* =====================================================
+   CONSULTATION
+===================================================== */
+
+function saveConsultation(){
+
+    const patientId=
+        Number(
+            document.getElementById("consultPatient").value
+        );
+
+    const patient=
+        db.patients.find(x=>x.id===patientId);
+
+    if(!patient){
+
+        toast("اختر المريض");
+
+        return;
+    }
+
+    db.consultations.push({
+
+        id:Date.now(),
+
+        patientId,
+
+        patientName:patient.name,
+
+        date:
+            document.getElementById("consultDate").value,
+
+        temperature:
+            document.getElementById("temperature").value,
+
+        bloodPressure:
+            document.getElementById("bloodPressure").value,
+
+        pulse:
+            document.getElementById("pulse").value,
+
+        weight:
+            document.getElementById("weight").value,
+
+        height:
+            document.getElementById("height").value,
+
+        oxygen:
+            document.getElementById("oxygen").value,
+
+        complaint:
+            document.getElementById("complaint").value,
+
+        examination:
+            document.getElementById("examination").value,
+
+        diagnosis:
+            document.getElementById("diagnosis").value,
+
+        treatment:
+            document.getElementById("treatment").value
+    });
+
+    patient.lastVisit=
+        new Date().toLocaleDateString("ar-DZ");
+
+    save();
+
+    toast("تم حفظ الاستشارة الطبية");
+}
+
+
+function printCurrentConsultation(){
+
+    const patientId=
+        Number(
+            document.getElementById("consultPatient").value
+        );
+
+    const patient=
+        db.patients.find(x=>x.id===patientId);
+
+    if(!patient){
+
+        toast("اختر المريض أولاً");
+
+        return;
+    }
+
+    const html=`
+
+    <html dir="rtl">
+
+    <head>
+
+        <title>تقرير طبي</title>
+
+        <style>
+
+            body{
+                font-family:Arial;
+                padding:45px;
+                color:#222;
+            }
+
+            h1{
+                color:#087f73;
+            }
+
+            .line{
+                border-bottom:1px solid #ddd;
+                margin:20px 0;
+            }
+
+            p{
+                margin:10px 0;
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+
+        <h1>عيادة الطبيب قرناش</h1>
+
+        <p>طبيب عام</p>
+
+        <div class="line"></div>
+
+        <h2>تقرير استشارة طبية</h2>
+
+        <p>
+            <b>المريض:</b>
+            ${escapeHTML(patient.name)}
+        </p>
+
+        <p>
+            <b>التاريخ:</b>
+            ${escapeHTML(
+                document.getElementById("consultDate").value
+            )}
+        </p>
+
+        <div class="line"></div>
+
+        <p>
+            <b>الشكوى:</b><br>
+            ${escapeHTML(
+                document.getElementById("complaint").value
+            )}
+        </p>
+
+        <p>
+            <b>الفحص:</b><br>
+            ${escapeHTML(
+                document.getElementById("examination").value
+            )}
+        </p>
+
+        <p>
+            <b>التشخيص:</b><br>
+            ${escapeHTML(
+                document.getElementById("diagnosis").value
+            )}
+        </p>
+
+        <p>
+            <b>الخطة العلاجية:</b><br>
+            ${escapeHTML(
+                document.getElementById("treatment").value
+            )}
+        </p>
+
+        <div class="line"></div>
+
+        <p>
+            توقيع الطبيب: ______________________
+        </p>
+
+    </body>
+
+    </html>`;
+
+    const w=window.open("","_blank");
+
+    w.document.write(html);
+
+    w.document.close();
+
+    w.print();
+}
+
+
+/* =====================================================
+   PRESCRIPTIONS
+===================================================== */
+
+function addPrescription(){
+
+    const patientId=
+        Number(
+            document.getElementById("rxPatient").value
+        );
+
+    const patient=
+        db.patients.find(x=>x.id===patientId);
+
+    if(!patient){
+
+        toast("اختر المريض");
+
+        return;
+    }
+
+    const medicines=
+        document.getElementById("rxMedicines")
+        .value.trim();
+
+    if(!medicines){
+
+        toast("أدخل الأدوية");
+
+        return;
+    }
+
+    db.prescriptions.push({
+
+        id:Date.now(),
+
+        patientId,
+
+        patientName:patient.name,
+
+        date:
+            document.getElementById("rxDate").value,
+
+        medicines,
+
+        notes:
+            document.getElementById("rxNotes").value
+    });
+
+    closeModal("prescriptionModal");
+
+    save();
+
+    toast("تم حفظ الوصفة");
+}
+
+
+function renderPrescriptions(){
+
+    const tbody=
+        document.getElementById("prescriptionsTable");
+
+    if(!tbody)return;
+
+    tbody.innerHTML="";
+
+    if(!db.prescriptions.length){
+
+        tbody.innerHTML=`
+        <tr>
+            <td colspan="4"
+                style="text-align:center;color:#94a3b8">
+                لا توجد وصفات
+            </td>
+        </tr>`;
+
+        return;
+    }
+
+    db.prescriptions.forEach(rx=>{
+
+        tbody.innerHTML+=`
+
+        <tr>
+
+            <td>
+                ${escapeHTML(rx.patientName)}
+            </td>
+
+            <td>${rx.date}</td>
+
+            <td style="white-space:pre-line">
+                ${escapeHTML(rx.medicines)}
+            </td>
+
+            <td>
+
+                <button class="mini"
+                    onclick="printPrescription(${rx.id})">
+                    🖨 طباعة
+                </button>
+
+            </td>
+
+        </tr>`;
+    });
+}
+
+
+function printPrescription(id){
+
+    const rx=
+        db.prescriptions.find(x=>x.id===id);
+
+    if(!rx)return;
+
+    const settings=db.settings;
+
+    const w=window.open("","_blank");
+
+    w.document.write(`
+
+    <html dir="rtl">
+
+    <head>
+
+        <title>وصفة طبية</title>
+
+        <style>
+
+            body{
+                font-family:Arial;
+                padding:45px;
+                color:#222;
+            }
+
+            .header{
+                border-bottom:3px solid #087f73;
+                padding-bottom:15px;
+            }
+
+            h1{
+                color:#087f73;
+            }
+
+            .line{
+                margin:25px 0;
+                border-bottom:1px solid #ddd;
+            }
+
+            .rx{
+                margin-top:30px;
+                min-height:250px;
+                white-space:pre-line;
+                font-size:17px;
+                line-height:2;
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+
+        <div class="header">
+
+            <h1>${escapeHTML(settings.clinic)}</h1>
+
+            <p>${escapeHTML(settings.doctor)}
+            — ${escapeHTML(settings.specialty)}</p>
+
+            <p>${escapeHTML(settings.phone)}</p>
+
+        </div>
+
+        <div class="line"></div>
+
+        <h2>وصفة طبية</h2>
+
+        <p>
+            <b>المريض:</b>
+            ${escapeHTML(rx.patientName)}
+        </p>
+
+        <p>
+            <b>التاريخ:</b>
+            ${escapeHTML(rx.date)}
+        </p>
+
+        <div class="rx">
+            ${escapeHTML(rx.medicines)}
+        </div>
+
+        <p>
+            ${escapeHTML(rx.notes||"")}
+        </p>
+
+        <div class="line"></div>
+
+        <p>
+            توقيع الطبيب:
+            ____________________
+        </p>
+
+    </body>
+
+    </html>`);
+
+    w.document.close();
+
+    w.print();
+}
+
+
+/* =====================================================
+   LAB
+===================================================== */
+
+function addLab(){
+
+    const patientId=
+        Number(
+            document.getElementById("labPatient").value
+        );
+
+    const patient=
+        db.patients.find(x=>x.id===patientId);
+
+    if(!patient){
+
+        toast("اختر المريض");
+
+        return;
+    }
+
+    db.labs.push({
+
+        id:Date.now(),
+
+        patientId,
+
+        patientName:patient.name,
+
+        type:
+            document.getElementById("labType").value,
+
+        result:
+            document.getElementById("labResult").value,
+
+        date:
+            todayISO()
+    });
+
+    closeModal("labModal");
+
+    save();
+
+    toast("تم حفظ النتيجة");
+}
+
+
+function renderLabs(){
+
+    const box=
+        document.getElementById("labsList");
+
+    if(!box)return;
+
+    box.innerHTML="";
+
+    if(!db.labs.length){
+
+        box.innerHTML=
+        `<p style="color:#94a3b8">
+            لا توجد نتائج مسجلة.
+        </p>`;
+
+        return;
+    }
+
+    db.labs.forEach(lab=>{
+
+        box.innerHTML+=`
+
+        <div style="
+            padding:14px 0;
+            border-bottom:1px solid #edf2f4
+        ">
+
+            <div style="
+                display:flex;
+                justify-content:space-between;
+                gap:10px
+            ">
+
+                <strong style="color:#12343b">
+                    ${escapeHTML(lab.patientName)}
+                </strong>
+
+                <span style="
+                    color:#087f73;
+                    font-size:10px
+                ">
+                    ${escapeHTML(lab.type)}
+                </span>
+
+            </div>
+
+            <p style="
+                margin-top:8px;
+                font-size:11px;
+                color:#64748b;
+                white-space:pre-line
+            ">
+                ${escapeHTML(lab.result||"لا توجد نتيجة")}
+            </p>
+
+            <small style="
+                color:#94a3b8;
+                font-size:9px
+            ">
+                ${lab.date}
+            </small>
+
+        </div>`;
+    });
+}
+
+
+/* =====================================================
+   INVOICES
+===================================================== */
+
+function addInvoice(){
+
+    const patientId=
+        Number(
+            document.getElementById("invoicePatient").value
+        );
+
+    const patient=
+        db.patients.find(x=>x.id===patientId);
+
+    if(!patient){
+
+        toast("اختر المريض");
+
+        return;
+    }
+
+    const amount=
+        Number(
+            document.getElementById("invoiceAmount").value
+        );
+
+    if(!amount){
+
+        toast("أدخل المبلغ");
+
+        return;
+    }
+
+    db.invoices.push({
+
+        id:Date.now(),
+
+        patientId,
+
+        patientName:patient.name,
+
+        service:
+            document.getElementById("invoiceService").value,
+
+        amount,
+
+        status:
+            document.getElementById("invoiceStatus").value,
+
+        date:
+            todayISO()
+    });
+
+    closeModal("invoiceModal");
+
+    save();
+
+    toast("تم حفظ الفاتورة");
+}
+
+
+function renderInvoices(){
+
+    const tbody=
+        document.getElementById("invoicesTable");
+
+    if(!tbody)return;
+
+    tbody.innerHTML="";
+
+    db.invoices.forEach(i=>{
+
+        tbody.innerHTML+=`
+
+        <tr>
+
+            <td>${escapeHTML(i.patientName)}</td>
+
+            <td>${escapeHTML(i.service)}</td>
+
+            <td>${formatMoney(i.amount)}</td>
+
+            <td>
+                ${escapeHTML(i.status)}
+            </td>
+
+            <td>${i.date}</td>
+
+        </tr>`;
+    });
+
+    const total=
+        db.invoices.reduce(
+            (sum,x)=>
+                x.status==="مدفوع"
+                ? sum+Number(x.amount)
+                : sum,
+            0
+        );
+
+    document.getElementById("totalInvoices")
+        .textContent=db.invoices.length;
+
+    document.getElementById("totalRevenue")
+        .textContent=formatMoney(total);
+}
+
+
+/* =====================================================
+   SELECTS
+===================================================== */
+
+function fillPatientSelects(){
+
+    const ids=[
+        "aPatient",
+        "rxPatient",
+        "labPatient",
+        "invoicePatient",
+        "consultPatient"
+    ];
+
+    ids.forEach(id=>{
+
+        const select=
+            document.getElementById(id);
+
+        if(!select)return;
+
+        const old=select.value;
+
+        select.innerHTML=
+            `<option value="">
+                اختر المريض
+            </option>`;
+
+        db.patients.forEach(p=>{
+
+            select.innerHTML+=`
+                <option value="${p.id}">
+                    ${escapeHTML(p.name)}
+                </option>`;
+        });
+
+        if(old)
+            select.value=old;
+    });
+}
+
+
+/* =====================================================
+   REPORTS
+===================================================== */
+
+function renderReports(){
+
+    const revenue=
+        db.invoices.reduce(
+            (sum,x)=>
+                x.status==="مدفوع"
+                ?sum+Number(x.amount)
+                :sum,
+            0
+        );
+
+    setText("rPatients",db.patients.length);
+
+    setText(
+        "rAppointments",
+        db.appointments.length
+    );
+
+    setText(
+        "rConsultations",
+        db.consultations.length
+    );
+
+    setText(
+        "rRevenue",
+        formatMoney(revenue)
+    );
+}
+
+
+/* =====================================================
+   SETTINGS
+===================================================== */
+
+function loadSettings(){
+
+    const s=db.settings;
+
+    document.getElementById("settingDoctor").value=
+        s.doctor||"";
+
+    document.getElementById("settingSpecialty").value=
+        s.specialty||"";
+
+    document.getElementById("settingClinic").value=
+        s.clinic||"";
+
+    document.getElementById("settingPhone").value=
+        s.phone||"";
+
+    document.getElementById("settingAddress").value=
+        s.address||"";
+
+    document.getElementById("settingPrescription").value=
+        s.prescription||"";
+}
+
+
+function saveSettings(){
+
+    db.settings={
+
+        doctor:
+            document.getElementById("settingDoctor").value,
+
+        specialty:
+            document.getElementById("settingSpecialty").value,
+
+        clinic:
+            document.getElementById("settingClinic").value,
+
+        phone:
+            document.getElementById("settingPhone").value,
+
+        address:
+            document.getElementById("settingAddress").value,
+
+        prescription:
+            document.getElementById("settingPrescription").value
+    };
+
+    save();
+
+    toast("تم حفظ إعدادات العيادة");
+}
+
+
+/* =====================================================
+   BACKUP
+===================================================== */
+
+function exportBackup(){
+
+    const data=
+        JSON.stringify(db,null,2);
+
+    const blob=
+        new Blob(
+            [data],
+            {type:"application/json"}
+        );
+
+    const url=
+        URL.createObjectURL(blob);
+
+    const a=
+        document.createElement("a");
+
+    a.href=url;
+
+    a.download=
+        "qarnaash-clinic-backup.json";
+
+    a.click();
+
+    URL.revokeObjectURL(url);
+
+    toast("تم تنزيل النسخة الاحتياطية");
+}
+
+
+/* =====================================================
+   STATISTICS
+===================================================== */
+
+function renderStats(){
+
+    setText(
+        "sPatients",
+        db.patients.length
+    );
+
+    setText(
+        "sAppointments",
+        db.appointments.length
+    );
+
+    setText(
+        "sConsultations",
+        db.consultations.length
+    );
+
+    setText(
+        "sPrescriptions",
+        db.prescriptions.length
+    );
+}
+
+
+/* =====================================================
+   DATE
+===================================================== */
+
+function todayISO(){
+
+    const d=new Date();
+
+    return d.toISOString().split("T")[0];
+}
+
+
+function setDefaultDates(){
+
+    [
+        "aDate",
+        "rxDate",
+        "consultDate"
+    ].forEach(id=>{
+
+        const el=
+            document.getElementById(id);
+
+        if(el && !el.value)
+            el.value=todayISO();
+    });
+}
+
+
+function setCurrentDate(){
+
+    const d=new Date();
+
+    document.getElementById(
+        "currentDate"
+    ).textContent=
+        d.toLocaleDateString(
+            "ar-DZ",
+            {
+                day:"numeric",
+                month:"long",
+                year:"numeric"
+            }
+        );
+}
+
+
+function calculateAge(birth){
+
+    if(!birth)
+        return "-";
+
+    const b=
+        new Date(birth);
+
+    const now=
+        new Date();
+
+    let age=
+        now.getFullYear()-
+        b.getFullYear();
+
+    const month=
+        now.getMonth()-
+        b.getMonth();
+
+    if(
+        month<0 ||
+        (
+            month===0 &&
+            now.getDate()<b.getDate()
+        )
+    ){
+        age--;
+    }
+
+    return age+" سنة";
+}
+
+
+/* =====================================================
+   UTILITIES
+===================================================== */
+
+function setText(id,value){
+
+    const el=document.getElementById(id);
+
+    if(el)
+        el.textContent=value;
+}
+
+
+function formatMoney(value){
+
+    return Number(value||0)
+        .toLocaleString("ar-DZ");
+}
+
+
+function escapeHTML(value){
+
+    return String(value??"")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+}
+
+
+function toast(message){
+
+    const el=
+        document.getElementById("toast");
+
+    el.textContent=message;
+
+    el.classList.add("show");
+
+    setTimeout(
+        ()=>el.classList.remove("show"),
+        2500
+    );
+}
+
+
+/* =====================================================
+   RENDER ALL
+===================================================== */
+
+function renderAll(){
+
+    renderStats();
+
+    renderPatients();
+
+    renderAppointments();
+
+    renderTodayAppointments();
+
+    renderPrescriptions();
+
+    renderLabs();
+
+    renderInvoices();
+
+    renderReports();
+
+    fillPatientSelects();
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+setCurrentDate();
+
+setDefaultDates();
+
+loadSettings();
+
+renderAll();
+
+</script>
+
+</body>
+</html>
